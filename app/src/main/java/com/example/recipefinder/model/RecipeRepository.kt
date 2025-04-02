@@ -22,7 +22,7 @@ class RecipeRepository(private val context: Context) {
         return withContext(Dispatchers.IO) {
             try {
                 val ingredientsParam = ingredients.joinToString(",")
-                val urlString = "$API_BASE_URL/findByIngredients?ingredients=$ingredientsParam&apiKey=89b1e02aa1064bb69925ab953ccb8b47"
+                val urlString = "$API_BASE_URL/findByIngredients?ingredients=$ingredientsParam&apiKey=f9b2507224434ec287f6913d6896dee5"
                 val url = URL(urlString)
                 val connection = url.openConnection() as HttpURLConnection
 
@@ -52,7 +52,7 @@ class RecipeRepository(private val context: Context) {
     suspend fun getRecipeDetails(recipeId: String): Recipe? {
         return withContext(Dispatchers.IO) {
             try {
-                val urlString = "$API_BASE_URL/$recipeId/information?apiKey=89b1e02aa1064bb69925ab953ccb8b47"
+                val urlString = "$API_BASE_URL/$recipeId/information?apiKey=f9b2507224434ec287f6913d6896dee5"
                 val url = URL(urlString)
                 val connection = url.openConnection() as HttpURLConnection
 
@@ -174,5 +174,90 @@ class RecipeRepository(private val context: Context) {
 
     fun isRecipeFavorite(recipeId: String): Boolean {
         return databaseHelper.isFavorite(recipeId)
+    }
+
+    suspend fun getPopularRecipes(): List<Recipe> {
+        return withContext(Dispatchers.IO) {
+            try {
+                val urlString = "$API_BASE_URL/random?number=10&apiKey=f9b2507224434ec287f6913d6896dee5"
+                val url = URL(urlString)
+                val connection = url.openConnection() as HttpURLConnection
+
+                connection.requestMethod = "GET"
+
+                val responseCode = connection.responseCode
+                if (responseCode == HttpURLConnection.HTTP_OK) {
+                    val reader = BufferedReader(InputStreamReader(connection.inputStream))
+                    val response = StringBuilder()
+                    var line: String?
+                    while (reader.readLine().also { line = it } != null) {
+                        response.append(line)
+                    }
+                    reader.close()
+
+                    parsePopularRecipesJson(response.toString())
+                } else {
+                    Log.e("RecipeRepository", "Error: $responseCode")
+                    emptyList()
+                }
+            } catch (e: Exception) {
+                Log.e("RecipeRepository", "Exception: ${e.message}")
+                emptyList()
+            }
+        }
+    }
+
+    private fun parsePopularRecipesJson(jsonString: String): List<Recipe> {
+        val recipes = mutableListOf<Recipe>()
+        try {
+            val jsonObject = JSONObject(jsonString)
+            val recipesArray = jsonObject.getJSONArray("recipes")
+            
+            for (i in 0 until recipesArray.length()) {
+                val recipeJson = recipesArray.getJSONObject(i)
+                
+                val id = recipeJson.getString("id")
+                val title = recipeJson.getString("title")
+                val imageUrl = recipeJson.getString("image")
+                val cookTime = recipeJson.optInt("readyInMinutes", 30)
+                val servings = recipeJson.optInt("servings", 4)
+                
+                // Parse ingredients
+                val ingredientsArray = recipeJson.getJSONArray("extendedIngredients")
+                val ingredients = mutableListOf<String>()
+                for (j in 0 until ingredientsArray.length()) {
+                    val ingredient = ingredientsArray.getJSONObject(j).getString("original")
+                    ingredients.add(ingredient)
+                }
+                
+                // Get instructions
+                var instructions = ""
+                if (recipeJson.has("instructions") && !recipeJson.isNull("instructions")) {
+                    instructions = recipeJson.getString("instructions")
+                } else if (recipeJson.has("analyzedInstructions")) {
+                    val analyzedInstructions = recipeJson.getJSONArray("analyzedInstructions")
+                    if (analyzedInstructions.length() > 0) {
+                        val stepsJson = analyzedInstructions.getJSONObject(0).getJSONArray("steps")
+                        val stepsBuilder = StringBuilder()
+                        for (k in 0 until stepsJson.length()) {
+                            val step = stepsJson.getJSONObject(k)
+                            val number = step.getInt("number")
+                            val stepText = step.getString("step")
+                            stepsBuilder.append("$number. $stepText\n\n")
+                        }
+                        instructions = stepsBuilder.toString().trim()
+                    }
+                }
+                
+                if (instructions.isEmpty()) {
+                    instructions = "No detailed instructions available for this recipe."
+                }
+                
+                recipes.add(Recipe(id, title, imageUrl, ingredients, instructions, cookTime, servings))
+            }
+        } catch (e: Exception) {
+            Log.e("RecipeRepository", "Parse error: ${e.message}")
+        }
+        return recipes
     }
 }

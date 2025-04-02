@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
@@ -27,6 +28,7 @@ class RecipeSearchFragment : Fragment() {
     private lateinit var ingredientChipGroup: ChipGroup
     private lateinit var recipeRecyclerView: RecyclerView
     private lateinit var recipeAdapter: RecipeAdapter
+    private lateinit var trendingTitle: TextView
 
     private val ingredients = mutableListOf<String>()
     private lateinit var recipeRepository: RecipeRepository
@@ -62,6 +64,7 @@ class RecipeSearchFragment : Fragment() {
         searchButton = view.findViewById(R.id.search_button)
         ingredientChipGroup = view.findViewById(R.id.ingredient_chip_group)
         recipeRecyclerView = view.findViewById(R.id.recipe_recycler_view)
+        trendingTitle = view.findViewById(R.id.trending_title)
 
         // Setup RecyclerView
         recipeRecyclerView.layoutManager = LinearLayoutManager(context)
@@ -75,6 +78,9 @@ class RecipeSearchFragment : Fragment() {
         }
         recipeRecyclerView.adapter = recipeAdapter
 
+        // Load popular recipes initially
+        loadPopularRecipes()
+
         // Restore ingredient chips if there are saved ingredients
         ingredients.forEach { ingredient ->
             addIngredientChip(ingredient)
@@ -87,6 +93,8 @@ class RecipeSearchFragment : Fragment() {
                 addIngredientChip(ingredient)
                 ingredients.add(ingredient)
                 ingredientEditText.text.clear()
+                // Hide trending title when adding ingredients
+                trendingTitle.visibility = View.GONE
             } else if (ingredients.contains(ingredient)) {
                 Toast.makeText(context, "Ingredient already added", Toast.LENGTH_SHORT).show()
             }
@@ -116,9 +124,23 @@ class RecipeSearchFragment : Fragment() {
             setOnCloseIconClickListener {
                 ingredientChipGroup.removeView(this)
                 ingredients.remove(ingredient)
+                // Show trending title if all ingredients are removed
+                if (ingredients.isEmpty()) {
+                    loadPopularRecipes()
+                }
             }
         }
         ingredientChipGroup.addView(chip)
+    }
+
+    private fun loadPopularRecipes() {
+        lifecycleScope.launch {
+            val popularRecipes = recipeRepository.getPopularRecipes()
+            if (popularRecipes.isNotEmpty()) {
+                recipeAdapter.submitList(popularRecipes)
+                trendingTitle.visibility = View.VISIBLE
+            }
+        }
     }
 
     private fun searchRecipes() {
@@ -128,6 +150,7 @@ class RecipeSearchFragment : Fragment() {
                 Toast.makeText(context, "No recipes found with these ingredients", Toast.LENGTH_SHORT).show()
             } else {
                 recipeAdapter.submitList(recipes)
+                trendingTitle.visibility = View.GONE
             }
         }
     }
