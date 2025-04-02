@@ -90,6 +90,7 @@ class RecipeDetailFragment : Fragment() {
         val instructionsTextView = view.findViewById<TextView>(R.id.instructions)
         favoriteButton = view.findViewById(R.id.favorite_button)
         val backButton = view.findViewById<Button>(R.id.back_button)
+        val addToShoppingListButton = view.findViewById<Button>(R.id.add_to_shopping_list_button)
 
         // Set basic data
         titleTextView.text = recipe.title
@@ -128,6 +129,27 @@ class RecipeDetailFragment : Fragment() {
         // Set back button click listener
         backButton.setOnClickListener {
             parentFragmentManager.popBackStack()
+        }
+
+        // Setup add to shopping list button
+        addToShoppingListButton.setOnClickListener {
+            val missingIngredients = recipe.ingredients.filter { ingredient ->
+                !userIngredients.any { userIngredient ->
+                    ingredient.lowercase().contains(userIngredient.lowercase())
+                }
+            }
+
+            if (missingIngredients.isNotEmpty()) {
+                ShoppingListFragment.addToShoppingList(
+                    requireContext(),
+                    recipe.id,
+                    recipe.title,
+                    missingIngredients
+                )
+                Toast.makeText(context, "Added missing ingredients to shopping list", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(context, "You have all the ingredients!", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 

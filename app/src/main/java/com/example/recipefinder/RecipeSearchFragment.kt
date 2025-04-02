@@ -31,6 +31,19 @@ class RecipeSearchFragment : Fragment() {
     private val ingredients = mutableListOf<String>()
     private lateinit var recipeRepository: RecipeRepository
 
+    companion object {
+        private const val KEY_INGREDIENTS = "ingredients"
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        // Restore ingredients from saved state
+        savedInstanceState?.getStringArrayList(KEY_INGREDIENTS)?.let { savedIngredients ->
+            ingredients.clear()
+            ingredients.addAll(savedIngredients)
+        }
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -62,6 +75,11 @@ class RecipeSearchFragment : Fragment() {
         }
         recipeRecyclerView.adapter = recipeAdapter
 
+        // Restore ingredient chips if there are saved ingredients
+        ingredients.forEach { ingredient ->
+            addIngredientChip(ingredient)
+        }
+
         // Add ingredient button click listener
         addIngredientButton.setOnClickListener {
             val ingredient = ingredientEditText.text.toString().trim()
@@ -83,6 +101,12 @@ class RecipeSearchFragment : Fragment() {
 
             searchRecipes()
         }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        // Save ingredients to state
+        outState.putStringArrayList(KEY_INGREDIENTS, ArrayList(ingredients))
     }
 
     private fun addIngredientChip(ingredient: String) {

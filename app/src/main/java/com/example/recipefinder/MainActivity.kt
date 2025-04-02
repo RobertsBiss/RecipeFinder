@@ -11,8 +11,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val bottomNav = findViewById<BottomNavigationView>(R.id.bottom_navigation)
-        bottomNav.setOnItemSelectedListener { item ->
+        val bottomNavigation = findViewById<BottomNavigationView>(R.id.bottom_navigation)
+        bottomNavigation.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.nav_search -> {
                     loadFragment(RecipeSearchFragment())
@@ -20,6 +20,10 @@ class MainActivity : AppCompatActivity() {
                 }
                 R.id.nav_favorites -> {
                     loadFragment(FavoritesFragment())
+                    true
+                }
+                R.id.nav_shopping_list -> {
+                    loadFragment(ShoppingListFragment())
                     true
                 }
                 else -> false
