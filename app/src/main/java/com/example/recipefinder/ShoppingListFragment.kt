@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -16,6 +17,7 @@ import com.google.gson.reflect.TypeToken
 class ShoppingListFragment : Fragment() {
     private lateinit var adapter: ShoppingListAdapter
     private var shoppingList = mutableListOf<ShoppingListItem>()
+    private lateinit var emptyStateText: TextView
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -33,6 +35,7 @@ class ShoppingListFragment : Fragment() {
 
         // Setup RecyclerView
         val recyclerView = view.findViewById<RecyclerView>(R.id.shopping_list_recycler_view)
+        emptyStateText = view.findViewById(R.id.empty_state_text)
         adapter = ShoppingListAdapter(shoppingList) { updatedItem ->
             updateShoppingListItem(updatedItem)
         }
@@ -43,6 +46,9 @@ class ShoppingListFragment : Fragment() {
         view.findViewById<Button>(R.id.clear_all_button).setOnClickListener {
             clearAllItems()
         }
+
+        // Update empty state visibility
+        updateEmptyStateVisibility()
     }
 
     private fun loadShoppingList() {
@@ -56,6 +62,7 @@ class ShoppingListFragment : Fragment() {
         val sharedPrefs = requireContext().getSharedPreferences("shopping_list", android.content.Context.MODE_PRIVATE)
         val json = Gson().toJson(shoppingList)
         sharedPrefs.edit().putString("items", json).apply()
+        updateEmptyStateVisibility()
     }
 
     private fun updateShoppingListItem(updatedItem: ShoppingListItem) {
@@ -70,6 +77,10 @@ class ShoppingListFragment : Fragment() {
         shoppingList.clear()
         adapter.updateItems(shoppingList)
         saveShoppingList()
+    }
+
+    private fun updateEmptyStateVisibility() {
+        emptyStateText.visibility = if (shoppingList.isEmpty()) View.VISIBLE else View.GONE
     }
 
     companion object {

@@ -39,7 +39,6 @@ class RecipeSearchFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        // Restore ingredients from saved state
         savedInstanceState?.getStringArrayList(KEY_INGREDIENTS)?.let { savedIngredients ->
             ingredients.clear()
             ingredients.addAll(savedIngredients)
@@ -81,12 +80,10 @@ class RecipeSearchFragment : Fragment() {
         // Load popular recipes initially
         loadPopularRecipes()
 
-        // Restore ingredient chips if there are saved ingredients
         ingredients.forEach { ingredient ->
             addIngredientChip(ingredient)
         }
 
-        // Add ingredient button click listener
         addIngredientButton.setOnClickListener {
             val ingredient = ingredientEditText.text.toString().trim()
             if (ingredient.isNotEmpty() && !ingredients.contains(ingredient)) {
@@ -144,13 +141,22 @@ class RecipeSearchFragment : Fragment() {
     }
 
     private fun searchRecipes() {
-        lifecycleScope.launch {
-            val recipes = recipeRepository.searchRecipesByIngredients(ingredients)
-            if (recipes.isEmpty()) {
-                Toast.makeText(context, "No recipes found with these ingredients", Toast.LENGTH_SHORT).show()
-            } else {
-                recipeAdapter.submitList(recipes)
-                trendingTitle.visibility = View.GONE
+        if (ingredients.isEmpty()) {
+            Toast.makeText(context, "Add at least one ingredient", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            try {
+                val recipes = recipeRepository.searchRecipesByIngredients(ingredients)
+                if (recipes.isEmpty()) {
+                    Toast.makeText(context, "No recipes found with these ingredients", Toast.LENGTH_SHORT).show()
+                } else {
+                    recipeAdapter.submitList(recipes)
+                    trendingTitle.visibility = View.GONE
+                }
+            } catch (e: Exception) {
+                Toast.makeText(context, "Error searching recipes: ${e.message}", Toast.LENGTH_SHORT).show()
             }
         }
     }

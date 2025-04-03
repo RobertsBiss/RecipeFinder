@@ -97,13 +97,10 @@ class RecipeDetailFragment : Fragment() {
         cookTimeTextView.text = "Cook time: ${recipe.cookTime} minutes"
         servingsTextView.text = "Servings: ${recipe.servings}"
 
-        // Set initial ingredients (will be updated when full details are loaded)
         updateIngredientsDisplay(ingredientsTextView)
 
-        // Set initial instructions with HTML parsing
         updateInstructionsDisplay(instructionsTextView, recipe.instructions)
 
-        // Load image with Glide
         Glide.with(this)
             .load(recipe.imageUrl)
             .placeholder(R.drawable.placeholder_image)

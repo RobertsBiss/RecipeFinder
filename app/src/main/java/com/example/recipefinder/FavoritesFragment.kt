@@ -37,7 +37,6 @@ class FavoritesFragment : Fragment() {
         // Setup RecyclerView
         recipeRecyclerView.layoutManager = LinearLayoutManager(context)
         recipeAdapter = RecipeAdapter { recipe ->
-            // For favorites, we don't know which ingredients the user has, so pass empty list
             val detailFragment = RecipeDetailFragment.newInstance(recipe, emptyList())
             parentFragmentManager.beginTransaction()
                 .replace(R.id.fragment_container, detailFragment)
