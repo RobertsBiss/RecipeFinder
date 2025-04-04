@@ -26,6 +26,10 @@ class MainActivity : AppCompatActivity() {
                     loadFragment(ShoppingListFragment())
                     true
                 }
+                R.id.nav_settings -> {
+                    loadFragment(SettingsFragment())
+                    true
+                }
                 else -> false
             }
         }
