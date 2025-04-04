@@ -1,507 +1,479 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp">
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:padding="16dp"
+        app:layout_constraintBottom_toTopOf="@id/btnSaveSettings"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <!-- Page Title -->
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Settings"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:layout_marginBottom="16dp"/>
+            android:orientation="vertical">
 
-        <!-- Dietary Preferences Section -->
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Dietary Preferences"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:gravity="center"
-            android:textAlignment="center"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="8dp"/>
-
-        <GridLayout
-            android:id="@+id/dietaryPreferencesGroup"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:columnCount="4"
-            android:alignmentMode="alignMargins"
-            android:columnOrderPreserved="false"
-            android:padding="2dp"
-            android:useDefaultMargins="true">
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chipVegan"
-                android:layout_width="0dp"
+            <!-- Page Title -->
+            <TextView
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_columnWeight="1"
-                android:layout_marginHorizontal="2dp"
-                android:layout_marginVertical="2dp"
+                android:text="Settings"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="16dp"/>
+
+            <!-- Dietary Preferences Section -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Dietary Preferences"
+                android:textSize="20sp"
+                android:textStyle="bold"
                 android:gravity="center"
                 android:textAlignment="center"
-                android:minHeight="32dp"
-                android:minWidth="90dp"
-                android:textSize="13sp"
-                android:text="Vegan"/>
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="8dp"/>
 
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chipVegetarian"
-                android:layout_width="0dp"
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/dietaryPreferencesGroup"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_columnWeight="1"
-                android:layout_marginHorizontal="2dp"
-                android:layout_marginVertical="2dp"
+                android:padding="2dp"
+                app:singleSelection="false">
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipVegan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="2dp"
+                    android:layout_marginVertical="2dp"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    android:minHeight="32dp"
+                    android:minWidth="90dp"
+                    android:textSize="12sp"
+                    android:text="Vegan"/>
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipVegetarian"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="2dp"
+                    android:layout_marginVertical="2dp"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    android:minHeight="32dp"
+                    android:minWidth="90dp"
+                    android:textSize="11.8sp"
+                    android:text="Vegetarian"/>
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipGlutenFree"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="2dp"
+                    android:layout_marginVertical="2dp"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    android:minHeight="32dp"
+                    android:minWidth="90dp"
+                    android:textSize="11.4sp"
+                    android:text="Gluten Free"/>
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipKeto"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="2dp"
+                    android:layout_marginVertical="2dp"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    android:minHeight="32dp"
+                    android:minWidth="90dp"
+                    android:textSize="12sp"
+                    android:text="Keto"/>
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipPaleo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="2dp"
+                    android:layout_marginVertical="2dp"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    android:minHeight="32dp"
+                    android:minWidth="90dp"
+                    android:textSize="12sp"
+                    android:text="Paleo"/>
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipPescatarian"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="2dp"
+                    android:layout_marginVertical="2dp"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    android:minHeight="32dp"
+                    android:minWidth="90dp"
+                    android:textSize="12sp"
+                    android:text="Pescatarian"/>
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipDairyFree"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="2dp"
+                    android:layout_marginVertical="2dp"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    android:minHeight="32dp"
+                    android:minWidth="90dp"
+                    android:textSize="12sp"
+                    android:text="Dairy Free"/>
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipPrimal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="2dp"
+                    android:layout_marginVertical="2dp"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    android:minHeight="32dp"
+                    android:minWidth="90dp"
+                    android:textSize="12sp"
+                    android:text="Primal"/>
+
+            </com.google.android.material.chip.ChipGroup>
+
+            <!-- Allergies Section -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Allergies"
+                android:textSize="20sp"
+                android:textStyle="bold"
                 android:gravity="center"
                 android:textAlignment="center"
-                android:minHeight="32dp"
-                android:minWidth="90dp"
-                android:textSize="13sp"
-                android:text="Vegetarian"/>
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="8dp"/>
 
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chipGlutenFree"
-                android:layout_width="0dp"
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/allergiesGroup"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_columnWeight="1"
-                android:layout_marginHorizontal="2dp"
-                android:layout_marginVertical="2dp"
+                android:padding="2dp"
+                app:singleSelection="false">
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipMilk"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="2dp"
+                    android:layout_marginVertical="2dp"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    android:minHeight="32dp"
+                    android:minWidth="90dp"
+                    android:textSize="12sp"
+                    android:text="Milk"/>
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipEggs"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="2dp"
+                    android:layout_marginVertical="2dp"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    android:minHeight="32dp"
+                    android:minWidth="90dp"
+                    android:textSize="12sp"
+                    android:text="Eggs"/>
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipPeanuts"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="2dp"
+                    android:layout_marginVertical="2dp"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    android:minHeight="32dp"
+                    android:minWidth="90dp"
+                    android:textSize="12sp"
+                    android:text="Peanuts"/>
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipTreeNuts"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="2dp"
+                    android:layout_marginVertical="2dp"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    android:minHeight="32dp"
+                    android:minWidth="90dp"
+                    android:textSize="12sp"
+                    android:text="Tree Nuts"/>
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipShellfish"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="2dp"
+                    android:layout_marginVertical="2dp"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    android:minHeight="32dp"
+                    android:minWidth="90dp"
+                    android:textSize="12sp"
+                    android:text="Shellfish"/>
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipWheat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="2dp"
+                    android:layout_marginVertical="2dp"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    android:minHeight="32dp"
+                    android:minWidth="90dp"
+                    android:textSize="12sp"
+                    android:text="Wheat"/>
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipSoy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="2dp"
+                    android:layout_marginVertical="2dp"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    android:minHeight="32dp"
+                    android:minWidth="90dp"
+                    android:textSize="12sp"
+                    android:text="Soy"/>
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipSesame"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="2dp"
+                    android:layout_marginVertical="2dp"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    android:minHeight="32dp"
+                    android:minWidth="90dp"
+                    android:textSize="12sp"
+                    android:text="Sesame"/>
+
+            </com.google.android.material.chip.ChipGroup>
+
+            <!-- Cuisine Preferences Section -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Cuisine Preferences"
+                android:textSize="20sp"
+                android:textStyle="bold"
                 android:gravity="center"
                 android:textAlignment="center"
-                android:minHeight="32dp"
-                android:minWidth="90dp"
-                android:textSize="13sp"
-                android:text="Gluten Free"/>
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="8dp"/>
 
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chipKeto"
-                android:layout_width="0dp"
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/cuisineGroup"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_columnWeight="1"
-                android:layout_marginHorizontal="2dp"
-                android:layout_marginVertical="2dp"
+                android:padding="2dp"
+                app:singleSelection="false">
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipGreek"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="2dp"
+                    android:layout_marginVertical="2dp"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    android:minHeight="32dp"
+                    android:minWidth="90dp"
+                    android:textSize="12sp"
+                    android:text="Greek"/>
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipItalian"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="2dp"
+                    android:layout_marginVertical="2dp"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    android:minHeight="32dp"
+                    android:minWidth="90dp"
+                    android:textSize="12sp"
+                    android:text="Italian"/>
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipMexican"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="2dp"
+                    android:layout_marginVertical="2dp"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    android:minHeight="32dp"
+                    android:minWidth="90dp"
+                    android:textSize="12sp"
+                    android:text="Mexican"/>
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipJapanese"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="2dp"
+                    android:layout_marginVertical="2dp"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    android:minHeight="32dp"
+                    android:minWidth="90dp"
+                    android:textSize="12sp"
+                    android:text="Japanese"/>
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipFrench"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="2dp"
+                    android:layout_marginVertical="2dp"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    android:minHeight="32dp"
+                    android:minWidth="90dp"
+                    android:textSize="12sp"
+                    android:text="French"/>
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipChinese"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="2dp"
+                    android:layout_marginVertical="2dp"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    android:minHeight="32dp"
+                    android:minWidth="90dp"
+                    android:textSize="12sp"
+                    android:text="Chinese"/>
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipIndian"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="2dp"
+                    android:layout_marginVertical="2dp"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    android:minHeight="32dp"
+                    android:minWidth="90dp"
+                    android:textSize="12sp"
+                    android:text="Indian"/>
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipKorean"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="2dp"
+                    android:layout_marginVertical="2dp"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    android:minHeight="32dp"
+                    android:minWidth="90dp"
+                    android:textSize="12sp"
+                    android:text="Korean"/>
+
+            </com.google.android.material.chip.ChipGroup>
+
+            <!-- Recipe Difficulty Section -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Recipe Difficulty"
+                android:textSize="20sp"
+                android:textStyle="bold"
                 android:gravity="center"
                 android:textAlignment="center"
-                android:minHeight="32dp"
-                android:minWidth="90dp"
-                android:textSize="13sp"
-                android:text="Keto"/>
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="8dp"/>
 
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chipPaleo"
-                android:layout_width="0dp"
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/difficultyGroup"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_columnWeight="1"
-                android:layout_marginHorizontal="2dp"
-                android:layout_marginVertical="2dp"
-                android:gravity="center"
-                android:textAlignment="center"
-                android:minHeight="32dp"
-                android:minWidth="90dp"
-                android:textSize="13sp"
-                android:text="Paleo"/>
+                android:padding="2dp"
+                app:singleSelection="false">
 
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chipPescatarian"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_columnWeight="1"
-                android:layout_marginHorizontal="2dp"
-                android:layout_marginVertical="2dp"
-                android:gravity="center"
-                android:textAlignment="center"
-                android:minHeight="32dp"
-                android:minWidth="90dp"
-                android:textSize="13sp"
-                android:text="Pescatarian"/>
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipEasy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="2dp"
+                    android:layout_marginVertical="2dp"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    android:minHeight="32dp"
+                    android:minWidth="90dp"
+                    android:textSize="12sp"
+                    android:text="Easy"/>
 
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chipDairyFree"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_columnWeight="1"
-                android:layout_marginHorizontal="2dp"
-                android:layout_marginVertical="2dp"
-                android:gravity="center"
-                android:textAlignment="center"
-                android:minHeight="32dp"
-                android:minWidth="90dp"
-                android:textSize="13sp"
-                android:text="Dairy Free"/>
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipMedium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="2dp"
+                    android:layout_marginVertical="2dp"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    android:minHeight="32dp"
+                    android:minWidth="90dp"
+                    android:textSize="12sp"
+                    android:text="Medium"/>
 
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chipPrimal"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_columnWeight="1"
-                android:layout_marginHorizontal="2dp"
-                android:layout_marginVertical="2dp"
-                android:gravity="center"
-                android:textAlignment="center"
-                android:minHeight="32dp"
-                android:minWidth="90dp"
-                android:textSize="13sp"
-                android:text="Primal"/>
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipHard"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="2dp"
+                    android:layout_marginVertical="2dp"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    android:minHeight="32dp"
+                    android:minWidth="90dp"
+                    android:textSize="12sp"
+                    android:text="Hard"/>
 
-        </GridLayout>
+            </com.google.android.material.chip.ChipGroup>
 
-        <!-- Allergies Section -->
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Allergies"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:gravity="center"
-            android:textAlignment="center"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="8dp"/>
+        </LinearLayout>
+    </ScrollView>
 
-        <GridLayout
-            android:id="@+id/allergiesGroup"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:columnCount="4"
-            android:alignmentMode="alignMargins"
-            android:columnOrderPreserved="false"
-            android:padding="2dp"
-            android:useDefaultMargins="true">
+    <!-- Save Button -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnSaveSettings"
+        android:layout_width="120dp"
+        android:layout_height="48dp"
+        android:text="Save"
+        android:layout_margin="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
 
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chipMilk"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_columnWeight="1"
-                android:layout_marginHorizontal="2dp"
-                android:layout_marginVertical="2dp"
-                android:gravity="center"
-                android:textAlignment="center"
-                android:minHeight="32dp"
-                android:minWidth="90dp"
-                android:textSize="13sp"
-                android:text="Milk"/>
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chipEggs"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_columnWeight="1"
-                android:layout_marginHorizontal="2dp"
-                android:layout_marginVertical="2dp"
-                android:gravity="center"
-                android:textAlignment="center"
-                android:minHeight="32dp"
-                android:minWidth="90dp"
-                android:textSize="13sp"
-                android:text="Eggs"/>
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chipPeanuts"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_columnWeight="1"
-                android:layout_marginHorizontal="2dp"
-                android:layout_marginVertical="2dp"
-                android:gravity="center"
-                android:textAlignment="center"
-                android:minHeight="32dp"
-                android:minWidth="90dp"
-                android:textSize="13sp"
-                android:text="Peanuts"/>
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chipTreeNuts"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_columnWeight="1"
-                android:layout_marginHorizontal="2dp"
-                android:layout_marginVertical="2dp"
-                android:gravity="center"
-                android:textAlignment="center"
-                android:minHeight="32dp"
-                android:minWidth="90dp"
-                android:textSize="13sp"
-                android:text="Tree Nuts"/>
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chipShellfish"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_columnWeight="1"
-                android:layout_marginHorizontal="2dp"
-                android:layout_marginVertical="2dp"
-                android:gravity="center"
-                android:textAlignment="center"
-                android:minHeight="32dp"
-                android:minWidth="90dp"
-                android:textSize="13sp"
-                android:text="Shellfish"/>
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chipWheat"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_columnWeight="1"
-                android:layout_marginHorizontal="2dp"
-                android:layout_marginVertical="2dp"
-                android:gravity="center"
-                android:textAlignment="center"
-                android:minHeight="32dp"
-                android:minWidth="90dp"
-                android:textSize="13sp"
-                android:text="Wheat"/>
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chipSoy"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_columnWeight="1"
-                android:layout_marginHorizontal="2dp"
-                android:layout_marginVertical="2dp"
-                android:gravity="center"
-                android:textAlignment="center"
-                android:minHeight="32dp"
-                android:minWidth="90dp"
-                android:textSize="13sp"
-                android:text="Soy"/>
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chipSesame"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_columnWeight="1"
-                android:layout_marginHorizontal="2dp"
-                android:layout_marginVertical="2dp"
-                android:gravity="center"
-                android:textAlignment="center"
-                android:minHeight="32dp"
-                android:minWidth="90dp"
-                android:textSize="13sp"
-                android:text="Sesame"/>
-
-        </GridLayout>
-
-        <!-- Cuisine Preferences Section -->
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Cuisine Preferences"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:gravity="center"
-            android:textAlignment="center"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="8dp"/>
-
-        <GridLayout
-            android:id="@+id/cuisineGroup"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:columnCount="4"
-            android:alignmentMode="alignMargins"
-            android:columnOrderPreserved="false"
-            android:padding="2dp"
-            android:useDefaultMargins="true">
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chipGreek"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_columnWeight="1"
-                android:layout_marginHorizontal="2dp"
-                android:layout_marginVertical="2dp"
-                android:gravity="center"
-                android:textAlignment="center"
-                android:minHeight="32dp"
-                android:minWidth="90dp"
-                android:textSize="13sp"
-                android:text="Greek"/>
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chipItalian"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_columnWeight="1"
-                android:layout_marginHorizontal="2dp"
-                android:layout_marginVertical="2dp"
-                android:gravity="center"
-                android:textAlignment="center"
-                android:minHeight="32dp"
-                android:minWidth="90dp"
-                android:textSize="13sp"
-                android:text="Italian"/>
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chipMexican"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_columnWeight="1"
-                android:layout_marginHorizontal="2dp"
-                android:layout_marginVertical="2dp"
-                android:gravity="center"
-                android:textAlignment="center"
-                android:minHeight="32dp"
-                android:minWidth="90dp"
-                android:textSize="13sp"
-                android:text="Mexican"/>
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chipJapanese"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_columnWeight="1"
-                android:layout_marginHorizontal="2dp"
-                android:layout_marginVertical="2dp"
-                android:gravity="center"
-                android:textAlignment="center"
-                android:minHeight="32dp"
-                android:minWidth="90dp"
-                android:textSize="13sp"
-                android:text="Japanese"/>
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chipFrench"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_columnWeight="1"
-                android:layout_marginHorizontal="2dp"
-                android:layout_marginVertical="2dp"
-                android:gravity="center"
-                android:textAlignment="center"
-                android:minHeight="32dp"
-                android:minWidth="90dp"
-                android:textSize="13sp"
-                android:text="French"/>
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chipChinese"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_columnWeight="1"
-                android:layout_marginHorizontal="2dp"
-                android:layout_marginVertical="2dp"
-                android:gravity="center"
-                android:textAlignment="center"
-                android:minHeight="32dp"
-                android:minWidth="90dp"
-                android:textSize="13sp"
-                android:text="Chinese"/>
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chipIndian"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_columnWeight="1"
-                android:layout_marginHorizontal="2dp"
-                android:layout_marginVertical="2dp"
-                android:gravity="center"
-                android:textAlignment="center"
-                android:minHeight="32dp"
-                android:minWidth="90dp"
-                android:textSize="13sp"
-                android:text="Indian"/>
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chipKorean"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_columnWeight="1"
-                android:layout_marginHorizontal="2dp"
-                android:layout_marginVertical="2dp"
-                android:gravity="center"
-                android:textAlignment="center"
-                android:minHeight="32dp"
-                android:minWidth="90dp"
-                android:textSize="13sp"
-                android:text="Korean"/>
-
-        </GridLayout>
-
-        <!-- Recipe Difficulty Section -->
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Recipe Difficulty"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:gravity="center"
-            android:textAlignment="center"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="8dp"/>
-
-        <GridLayout
-            android:id="@+id/difficultyGroup"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:columnCount="3"
-            android:alignmentMode="alignMargins"
-            android:columnOrderPreserved="false"
-            android:padding="2dp"
-            android:useDefaultMargins="true">
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chipEasy"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_columnWeight="1"
-                android:layout_marginHorizontal="2dp"
-                android:layout_marginVertical="2dp"
-                android:gravity="center"
-                android:textAlignment="center"
-                android:minHeight="32dp"
-                android:minWidth="90dp"
-                android:textSize="13sp"
-                android:text="Easy"/>
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chipMedium"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_columnWeight="1"
-                android:layout_marginHorizontal="2dp"
-                android:layout_marginVertical="2dp"
-                android:gravity="center"
-                android:textAlignment="center"
-                android:minHeight="32dp"
-                android:minWidth="90dp"
-                android:textSize="13sp"
-                android:text="Medium"/>
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chipHard"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_columnWeight="1"
-                android:layout_marginHorizontal="2dp"
-                android:layout_marginVertical="2dp"
-                android:gravity="center"
-                android:textAlignment="center"
-                android:minHeight="32dp"
-                android:minWidth="90dp"
-                android:textSize="13sp"
-                android:text="Hard"/>
-
-        </GridLayout>
-
-        <!-- Save Button -->
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnSaveSettings"
-            android:layout_width="120dp"
-            android:layout_height="48dp"
-            android:text="Save"
-            android:layout_gravity="center"
-            android:layout_marginTop="64dp"
-            android:layout_marginBottom="64dp"/>
-
-    </LinearLayout>
-</ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
