@@ -64,7 +64,6 @@ class RecipeDetailFragment : Fragment() {
 
         recipeRepository = RecipeRepository(requireContext())
 
-        // Extract recipe from arguments
         arguments?.let { args ->
             val id = args.getString("id") ?: ""
             val title = args.getString("title") ?: ""
@@ -110,7 +109,6 @@ class RecipeDetailFragment : Fragment() {
         isFavorite = recipeRepository.isRecipeFavorite(recipe.id)
         updateFavoriteButtonIcon()
 
-        // Set favorite button click listener
         favoriteButton.setOnClickListener {
             if (isFavorite) {
                 recipeRepository.removeFavoriteRecipe(recipe.id)
@@ -123,7 +121,6 @@ class RecipeDetailFragment : Fragment() {
             updateFavoriteButtonIcon()
         }
 
-        // Set back button click listener
         backButton.setOnClickListener {
             parentFragmentManager.popBackStack()
         }
@@ -172,12 +169,11 @@ class RecipeDetailFragment : Fragment() {
     }
 
     private fun updateIngredientsDisplay(ingredientsTextView: TextView) {
-
         val spannableString = SpannableStringBuilder()
 
         val normalizedUserIngredients = userIngredients.map { it.lowercase() }
 
-        recipe.ingredients.forEachIndexed { index, ingredient ->
+        recipe.ingredients.forEachIndexed { _, ingredient ->
             val isUserHasIngredient = normalizedUserIngredients.any {
                 ingredient.lowercase().contains(it)
             }

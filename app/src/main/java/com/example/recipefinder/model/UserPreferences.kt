@@ -24,4 +24,11 @@ data class UserPreferences(
             }
         }
     }
+
+    fun hasAnyPreferences(): Boolean {
+        return dietaryPreferences.isNotEmpty() ||
+               allergies.isNotEmpty() ||
+               cuisinePreferences.isNotEmpty() ||
+               difficultyPreference.isNotEmpty()
+    }
 } 

@@ -30,10 +30,8 @@ class ShoppingListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Load saved shopping list
         loadShoppingList()
 
-        // Setup RecyclerView
         val recyclerView = view.findViewById<RecyclerView>(R.id.shopping_list_recycler_view)
         emptyStateText = view.findViewById(R.id.empty_state_text)
         adapter = ShoppingListAdapter(shoppingList) { updatedItem ->
@@ -47,7 +45,6 @@ class ShoppingListFragment : Fragment() {
             clearAllItems()
         }
 
-        // Update empty state visibility
         updateEmptyStateVisibility()
     }
 

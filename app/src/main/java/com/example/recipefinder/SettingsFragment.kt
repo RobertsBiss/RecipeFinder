@@ -31,20 +31,17 @@ class SettingsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Initialize views
         dietaryPreferencesGroup = view.findViewById(R.id.dietaryPreferencesGroup)
         allergiesGroup = view.findViewById(R.id.allergiesGroup)
         cuisineGroup = view.findViewById(R.id.cuisineGroup)
         difficultyGroup = view.findViewById(R.id.difficultyGroup)
         saveButton = view.findViewById(R.id.btnSaveSettings)
 
-        // Make all chips checkable
         makeChipsCheckable(dietaryPreferencesGroup)
         makeChipsCheckable(allergiesGroup)
         makeChipsCheckable(cuisineGroup)
         makeChipsCheckable(difficultyGroup)
 
-        // Load saved preferences
         loadSavedPreferences()
 
         // Setup save button

@@ -16,6 +16,7 @@ import com.example.recipefinder.adapter.IngredientAdapter
 import com.example.recipefinder.adapter.RecipeAdapter
 import com.example.recipefinder.model.Recipe
 import com.example.recipefinder.model.RecipeRepository
+import com.example.recipefinder.model.UserPreferences
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
 import kotlinx.coroutines.launch
@@ -65,7 +66,6 @@ class RecipeSearchFragment : Fragment() {
         recipeRecyclerView = view.findViewById(R.id.recipe_recycler_view)
         trendingTitle = view.findViewById(R.id.trending_title)
 
-        // Setup RecyclerView
         recipeRecyclerView.layoutManager = LinearLayoutManager(context)
         recipeAdapter = RecipeAdapter { recipe ->
             // Navigate to recipe detail with user ingredients
@@ -77,11 +77,15 @@ class RecipeSearchFragment : Fragment() {
         }
         recipeRecyclerView.adapter = recipeAdapter
 
-        // Load popular recipes initially
-        loadPopularRecipes()
-
-        ingredients.forEach { ingredient ->
-            addIngredientChip(ingredient)
+        // Load popular recipes only if there are no ingredients
+        if (ingredients.isEmpty()) {
+            loadPopularRecipes()
+        } else {
+            // If there are saved ingredients, perform the search
+            ingredients.forEach { ingredient ->
+                addIngredientChip(ingredient)
+            }
+            searchRecipes()
         }
 
         addIngredientButton.setOnClickListener {
@@ -97,7 +101,6 @@ class RecipeSearchFragment : Fragment() {
             }
         }
 
-        // Search button click listener
         searchButton.setOnClickListener {
             if (ingredients.isEmpty()) {
                 Toast.makeText(context, "Add at least one ingredient", Toast.LENGTH_SHORT).show()
@@ -110,7 +113,6 @@ class RecipeSearchFragment : Fragment() {
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        // Save ingredients to state
         outState.putStringArrayList(KEY_INGREDIENTS, ArrayList(ingredients))
     }
 
@@ -121,7 +123,6 @@ class RecipeSearchFragment : Fragment() {
             setOnCloseIconClickListener {
                 ingredientChipGroup.removeView(this)
                 ingredients.remove(ingredient)
-                // Show trending title if all ingredients are removed
                 if (ingredients.isEmpty()) {
                     loadPopularRecipes()
                 }
@@ -146,17 +147,45 @@ class RecipeSearchFragment : Fragment() {
             return
         }
 
+        // Show loading indicator
+        val loadingView = view?.findViewById<View>(R.id.loading_indicator)
+        loadingView?.visibility = View.VISIBLE
+        recipeRecyclerView.visibility = View.GONE
+
         viewLifecycleOwner.lifecycleScope.launch {
             try {
                 val recipes = recipeRepository.searchRecipesByIngredients(ingredients)
+
+                // Hide loading indicator
+                loadingView?.visibility = View.GONE
+                recipeRecyclerView.visibility = View.VISIBLE
+
                 if (recipes.isEmpty()) {
-                    Toast.makeText(context, "No recipes found with these ingredients", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        context,
+                        "No recipes found with these ingredients",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 } else {
                     recipeAdapter.submitList(recipes)
                     trendingTitle.visibility = View.GONE
+
+                    // Check if preferences were applied
+                    val userPreferences = UserPreferences.getUserPreferences(requireContext())
+                    if (userPreferences.hasAnyPreferences()) {
+                        Toast.makeText(
+                            context,
+                            "Showing recipes matching your preferences",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
                 }
             } catch (e: Exception) {
-                Toast.makeText(context, "Error searching recipes: ${e.message}", Toast.LENGTH_SHORT).show()
+                loadingView?.visibility = View.GONE
+                recipeRecyclerView.visibility = View.VISIBLE
+
+                Toast.makeText(context, "Error searching recipes: ${e.message}", Toast.LENGTH_SHORT)
+                    .show()
             }
         }
     }

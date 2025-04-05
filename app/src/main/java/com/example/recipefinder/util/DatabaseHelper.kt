@@ -13,7 +13,6 @@ class DatabaseHelper(context: Context) :
         private const val DATABASE_NAME = "recipes.db"
         private const val DATABASE_VERSION = 1
 
-        // Table and column names
         private const val TABLE_FAVORITES = "favorites"
         private const val COLUMN_ID = "id"
         private const val COLUMN_TITLE = "title"

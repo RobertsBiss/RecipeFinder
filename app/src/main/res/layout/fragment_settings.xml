@@ -39,6 +39,8 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="8dp"/>
 
+            <!-- Allergies Section -->
+
             <com.google.android.material.chip.ChipGroup
                 android:id="@+id/dietaryPreferencesGroup"
                 android:layout_width="match_parent"
@@ -53,11 +55,11 @@
                     android:layout_marginHorizontal="2dp"
                     android:layout_marginVertical="2dp"
                     android:gravity="center"
-                    android:textAlignment="center"
+                    android:minWidth="115dp"
                     android:minHeight="32dp"
-                    android:minWidth="90dp"
-                    android:textSize="12sp"
-                    android:text="Vegan"/>
+                    android:text="Vegan"
+                    android:textAlignment="center"
+                    android:textSize="12sp" />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chipVegetarian"
@@ -66,11 +68,11 @@
                     android:layout_marginHorizontal="2dp"
                     android:layout_marginVertical="2dp"
                     android:gravity="center"
-                    android:textAlignment="center"
+                    android:minWidth="115dp"
                     android:minHeight="32dp"
-                    android:minWidth="90dp"
-                    android:textSize="11.8sp"
-                    android:text="Vegetarian"/>
+                    android:text="Vegetarian"
+                    android:textAlignment="center"
+                    android:textSize="12sp" />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chipGlutenFree"
@@ -79,11 +81,11 @@
                     android:layout_marginHorizontal="2dp"
                     android:layout_marginVertical="2dp"
                     android:gravity="center"
-                    android:textAlignment="center"
+                    android:minWidth="115dp"
                     android:minHeight="32dp"
-                    android:minWidth="90dp"
-                    android:textSize="11.4sp"
-                    android:text="Gluten Free"/>
+                    android:text="Gluten Free"
+                    android:textAlignment="center"
+                    android:textSize="12sp" />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chipKeto"
@@ -92,24 +94,11 @@
                     android:layout_marginHorizontal="2dp"
                     android:layout_marginVertical="2dp"
                     android:gravity="center"
-                    android:textAlignment="center"
+                    android:minWidth="115dp"
                     android:minHeight="32dp"
-                    android:minWidth="90dp"
-                    android:textSize="12sp"
-                    android:text="Keto"/>
-
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chipPaleo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="2dp"
-                    android:layout_marginVertical="2dp"
-                    android:gravity="center"
+                    android:text="Keto"
                     android:textAlignment="center"
-                    android:minHeight="32dp"
-                    android:minWidth="90dp"
-                    android:textSize="12sp"
-                    android:text="Paleo"/>
+                    android:textSize="12sp" />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chipPescatarian"
@@ -118,11 +107,11 @@
                     android:layout_marginHorizontal="2dp"
                     android:layout_marginVertical="2dp"
                     android:gravity="center"
-                    android:textAlignment="center"
+                    android:minWidth="115dp"
                     android:minHeight="32dp"
-                    android:minWidth="90dp"
-                    android:textSize="12sp"
-                    android:text="Pescatarian"/>
+                    android:text="Pescatarian"
+                    android:textAlignment="center"
+                    android:textSize="12sp" />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chipDairyFree"
@@ -131,28 +120,14 @@
                     android:layout_marginHorizontal="2dp"
                     android:layout_marginVertical="2dp"
                     android:gravity="center"
-                    android:textAlignment="center"
+                    android:minWidth="115dp"
                     android:minHeight="32dp"
-                    android:minWidth="90dp"
-                    android:textSize="12sp"
-                    android:text="Dairy Free"/>
-
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chipPrimal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="2dp"
-                    android:layout_marginVertical="2dp"
-                    android:gravity="center"
+                    android:text="Dairy Free"
                     android:textAlignment="center"
-                    android:minHeight="32dp"
-                    android:minWidth="90dp"
-                    android:textSize="12sp"
-                    android:text="Primal"/>
+                    android:textSize="12sp" />
 
             </com.google.android.material.chip.ChipGroup>
 
-            <!-- Allergies Section -->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -178,11 +153,11 @@
                     android:layout_marginHorizontal="2dp"
                     android:layout_marginVertical="2dp"
                     android:gravity="center"
-                    android:textAlignment="center"
+                    android:minWidth="115dp"
                     android:minHeight="32dp"
-                    android:minWidth="90dp"
-                    android:textSize="12sp"
-                    android:text="Milk"/>
+                    android:text="Milk"
+                    android:textAlignment="center"
+                    android:textSize="12sp" />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chipEggs"
@@ -191,11 +166,11 @@
                     android:layout_marginHorizontal="2dp"
                     android:layout_marginVertical="2dp"
                     android:gravity="center"
-                    android:textAlignment="center"
+                    android:minWidth="115dp"
                     android:minHeight="32dp"
-                    android:minWidth="90dp"
-                    android:textSize="12sp"
-                    android:text="Eggs"/>
+                    android:text="Eggs"
+                    android:textAlignment="center"
+                    android:textSize="12sp" />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chipPeanuts"
@@ -204,24 +179,11 @@
                     android:layout_marginHorizontal="2dp"
                     android:layout_marginVertical="2dp"
                     android:gravity="center"
-                    android:textAlignment="center"
+                    android:minWidth="115dp"
                     android:minHeight="32dp"
-                    android:minWidth="90dp"
-                    android:textSize="12sp"
-                    android:text="Peanuts"/>
-
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chipTreeNuts"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="2dp"
-                    android:layout_marginVertical="2dp"
-                    android:gravity="center"
+                    android:text="Peanuts"
                     android:textAlignment="center"
-                    android:minHeight="32dp"
-                    android:minWidth="90dp"
-                    android:textSize="12sp"
-                    android:text="Tree Nuts"/>
+                    android:textSize="12sp" />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chipShellfish"
@@ -230,11 +192,11 @@
                     android:layout_marginHorizontal="2dp"
                     android:layout_marginVertical="2dp"
                     android:gravity="center"
-                    android:textAlignment="center"
+                    android:minWidth="115dp"
                     android:minHeight="32dp"
-                    android:minWidth="90dp"
-                    android:textSize="12sp"
-                    android:text="Shellfish"/>
+                    android:text="Shellfish"
+                    android:textAlignment="center"
+                    android:textSize="12sp" />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chipWheat"
@@ -243,11 +205,11 @@
                     android:layout_marginHorizontal="2dp"
                     android:layout_marginVertical="2dp"
                     android:gravity="center"
-                    android:textAlignment="center"
+                    android:minWidth="115dp"
                     android:minHeight="32dp"
-                    android:minWidth="90dp"
-                    android:textSize="12sp"
-                    android:text="Wheat"/>
+                    android:text="Wheat"
+                    android:textAlignment="center"
+                    android:textSize="12sp" />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chipSoy"
@@ -256,24 +218,11 @@
                     android:layout_marginHorizontal="2dp"
                     android:layout_marginVertical="2dp"
                     android:gravity="center"
-                    android:textAlignment="center"
+                    android:minWidth="115dp"
                     android:minHeight="32dp"
-                    android:minWidth="90dp"
-                    android:textSize="12sp"
-                    android:text="Soy"/>
-
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chipSesame"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="2dp"
-                    android:layout_marginVertical="2dp"
-                    android:gravity="center"
+                    android:text="Soy"
                     android:textAlignment="center"
-                    android:minHeight="32dp"
-                    android:minWidth="90dp"
-                    android:textSize="12sp"
-                    android:text="Sesame"/>
+                    android:textSize="12sp" />
 
             </com.google.android.material.chip.ChipGroup>
 
@@ -297,30 +246,17 @@
                 app:singleSelection="false">
 
                 <com.google.android.material.chip.Chip
-                    android:id="@+id/chipGreek"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="2dp"
-                    android:layout_marginVertical="2dp"
-                    android:gravity="center"
-                    android:textAlignment="center"
-                    android:minHeight="32dp"
-                    android:minWidth="90dp"
-                    android:textSize="12sp"
-                    android:text="Greek"/>
-
-                <com.google.android.material.chip.Chip
                     android:id="@+id/chipItalian"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="2dp"
                     android:layout_marginVertical="2dp"
                     android:gravity="center"
-                    android:textAlignment="center"
+                    android:minWidth="115dp"
                     android:minHeight="32dp"
-                    android:minWidth="90dp"
-                    android:textSize="12sp"
-                    android:text="Italian"/>
+                    android:text="Italian"
+                    android:textAlignment="center"
+                    android:textSize="12sp" />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chipMexican"
@@ -329,11 +265,11 @@
                     android:layout_marginHorizontal="2dp"
                     android:layout_marginVertical="2dp"
                     android:gravity="center"
-                    android:textAlignment="center"
+                    android:minWidth="115dp"
                     android:minHeight="32dp"
-                    android:minWidth="90dp"
-                    android:textSize="12sp"
-                    android:text="Mexican"/>
+                    android:text="Mexican"
+                    android:textAlignment="center"
+                    android:textSize="12sp" />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chipJapanese"
@@ -342,11 +278,11 @@
                     android:layout_marginHorizontal="2dp"
                     android:layout_marginVertical="2dp"
                     android:gravity="center"
-                    android:textAlignment="center"
+                    android:minWidth="115dp"
                     android:minHeight="32dp"
-                    android:minWidth="90dp"
-                    android:textSize="12sp"
-                    android:text="Japanese"/>
+                    android:text="Japanese"
+                    android:textAlignment="center"
+                    android:textSize="12sp" />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chipFrench"
@@ -355,11 +291,11 @@
                     android:layout_marginHorizontal="2dp"
                     android:layout_marginVertical="2dp"
                     android:gravity="center"
-                    android:textAlignment="center"
+                    android:minWidth="115dp"
                     android:minHeight="32dp"
-                    android:minWidth="90dp"
-                    android:textSize="12sp"
-                    android:text="French"/>
+                    android:text="French"
+                    android:textAlignment="center"
+                    android:textSize="12sp" />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chipChinese"
@@ -368,24 +304,11 @@
                     android:layout_marginHorizontal="2dp"
                     android:layout_marginVertical="2dp"
                     android:gravity="center"
-                    android:textAlignment="center"
+                    android:minWidth="115dp"
                     android:minHeight="32dp"
-                    android:minWidth="90dp"
-                    android:textSize="12sp"
-                    android:text="Chinese"/>
-
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chipIndian"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="2dp"
-                    android:layout_marginVertical="2dp"
-                    android:gravity="center"
+                    android:text="Chinese"
                     android:textAlignment="center"
-                    android:minHeight="32dp"
-                    android:minWidth="90dp"
-                    android:textSize="12sp"
-                    android:text="Indian"/>
+                    android:textSize="12sp" />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chipKorean"
@@ -394,11 +317,11 @@
                     android:layout_marginHorizontal="2dp"
                     android:layout_marginVertical="2dp"
                     android:gravity="center"
-                    android:textAlignment="center"
+                    android:minWidth="115dp"
                     android:minHeight="32dp"
-                    android:minWidth="90dp"
-                    android:textSize="12sp"
-                    android:text="Korean"/>
+                    android:text="Korean"
+                    android:textAlignment="center"
+                    android:textSize="12sp" />
 
             </com.google.android.material.chip.ChipGroup>
 
@@ -428,11 +351,11 @@
                     android:layout_marginHorizontal="2dp"
                     android:layout_marginVertical="2dp"
                     android:gravity="center"
-                    android:textAlignment="center"
+                    android:minWidth="115dp"
                     android:minHeight="32dp"
-                    android:minWidth="90dp"
-                    android:textSize="12sp"
-                    android:text="Easy"/>
+                    android:text="Easy"
+                    android:textAlignment="center"
+                    android:textSize="12sp" />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chipMedium"
@@ -441,11 +364,11 @@
                     android:layout_marginHorizontal="2dp"
                     android:layout_marginVertical="2dp"
                     android:gravity="center"
-                    android:textAlignment="center"
+                    android:minWidth="115dp"
                     android:minHeight="32dp"
-                    android:minWidth="90dp"
-                    android:textSize="12sp"
-                    android:text="Medium"/>
+                    android:text="Medium"
+                    android:textAlignment="center"
+                    android:textSize="12sp" />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chipHard"
@@ -454,11 +377,11 @@
                     android:layout_marginHorizontal="2dp"
                     android:layout_marginVertical="2dp"
                     android:gravity="center"
-                    android:textAlignment="center"
+                    android:minWidth="115dp"
                     android:minHeight="32dp"
-                    android:minWidth="90dp"
-                    android:textSize="12sp"
-                    android:text="Hard"/>
+                    android:text="Hard"
+                    android:textAlignment="center"
+                    android:textSize="12sp" />
 
             </com.google.android.material.chip.ChipGroup>
 
