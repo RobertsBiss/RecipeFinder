@@ -12,9 +12,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.recipefinder.adapter.IngredientAdapter
 import com.example.recipefinder.adapter.RecipeAdapter
-import com.example.recipefinder.model.Recipe
 import com.example.recipefinder.model.RecipeRepository
 import com.example.recipefinder.model.UserPreferences
 import com.google.android.material.chip.Chip

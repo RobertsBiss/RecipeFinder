@@ -2,7 +2,6 @@ package com.example.recipefinder.model
 
 import android.content.Context
 import android.util.Log
-import com.example.recipefinder.util.DatabaseHelper
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import kotlinx.coroutines.Dispatchers
@@ -15,7 +14,6 @@ import java.net.HttpURLConnection
 import java.net.URL
 
 class RecipeRepository(private val context: Context) {
-    private val databaseHelper = DatabaseHelper(context)
     private val API_BASE_URL = "https://api.spoonacular.com/recipes"
     private val sharedPreferences = context.getSharedPreferences("recipes", Context.MODE_PRIVATE)
     private val gson = Gson()
@@ -489,34 +487,5 @@ class RecipeRepository(private val context: Context) {
 
     fun isRecipeFavorite(recipeId: String): Boolean {
         return getFavoriteRecipes().any { it.id == recipeId }
-    }
-
-    private suspend fun getAllRecipes(): List<Recipe> = withContext(Dispatchers.IO) {
-        try {
-            val urlString = "$API_BASE_URL/findByIngredients?apiKey=89b1e02aa1064bb69925ab953ccb8b47&number=10"
-            val url = URL(urlString)
-            val connection = url.openConnection() as HttpURLConnection
-
-            connection.requestMethod = "GET"
-
-            val responseCode = connection.responseCode
-            if (responseCode == HttpURLConnection.HTTP_OK) {
-                val reader = BufferedReader(InputStreamReader(connection.inputStream))
-                val response = StringBuilder()
-                var line: String?
-                while (reader.readLine().also { line = it } != null) {
-                    response.append(line)
-                }
-                reader.close()
-
-                parseRecipesJson(response.toString())
-            } else {
-                Log.e("RecipeRepository", "Error: $responseCode")
-                emptyList()
-            }
-        } catch (e: Exception) {
-            Log.e("RecipeRepository", "Exception: ${e.message}")
-            emptyList()
-        }
     }
 }

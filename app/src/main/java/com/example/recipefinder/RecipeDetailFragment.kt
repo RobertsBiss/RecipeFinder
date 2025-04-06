@@ -32,8 +32,6 @@ class RecipeDetailFragment : Fragment() {
     private var userIngredients = listOf<String>()
 
     companion object {
-        private const val ARG_RECIPE = "recipe"
-        private const val ARG_USER_INGREDIENTS = "userIngredients"
 
         fun newInstance(recipe: Recipe, userIngredients: List<String>): RecipeDetailFragment {
             val fragment = RecipeDetailFragment()
