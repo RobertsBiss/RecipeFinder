@@ -21,7 +21,7 @@ class RecipeRepository(private val context: Context) {
     suspend fun searchRecipesByIngredients(ingredients: List<String>): List<Recipe> = withContext(Dispatchers.IO) {
         try {
             val ingredientsString = ingredients.joinToString(",")
-            val urlString = "$API_BASE_URL/findByIngredients?apiKey=89b1e02aa1064bb69925ab953ccb8b47&ingredients=$ingredientsString&number=20"
+            val urlString = "$API_BASE_URL/findByIngredients?apiKey=MY_API_KEY&ingredients=$ingredientsString&number=20"
             val url = URL(urlString)
             val connection = url.openConnection() as HttpURLConnection
 
@@ -233,7 +233,7 @@ class RecipeRepository(private val context: Context) {
     suspend fun getRecipeDetails(recipeId: String): Recipe? {
         return withContext(Dispatchers.IO) {
             try {
-                val urlString = "$API_BASE_URL/$recipeId/information?apiKey=89b1e02aa1064bb69925ab953ccb8b47"
+                val urlString = "$API_BASE_URL/$recipeId/information?apiKey= MY_API_KEY"
                 val url = URL(urlString)
                 val connection = url.openConnection() as HttpURLConnection
 
@@ -408,7 +408,7 @@ class RecipeRepository(private val context: Context) {
     suspend fun getPopularRecipes(): List<Recipe> {
         return withContext(Dispatchers.IO) {
             try {
-                val urlString = "$API_BASE_URL/random?number=10&apiKey=89b1e02aa1064bb69925ab953ccb8b47"
+                val urlString = "$API_BASE_URL/random?number=10&apiKey= MY_API_KEY"
                 val url = URL(urlString)
                 val connection = url.openConnection() as HttpURLConnection
 
